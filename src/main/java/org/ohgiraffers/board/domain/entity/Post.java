@@ -61,6 +61,12 @@ public class Post {
     //게터세터 추가했는데,
     //세터는: 개체 안의 값을 바꾸는것. 어디서든 바꿀수있다. entity가 바뀔수있으니 위험.
 
+    public void update(String title, String content){
+        this.title=title;
+        this.content=content;
+                //해당포스트의 타이틀을 받아오는
+    } //라는 메소드 하나만들어주고
+    // ,이렇게 업데이트메소드만들어주고,
 
 
 
