@@ -1,5 +1,7 @@
 package org.ohgiraffers.board.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.ohgiraffers.board.domain.dto.*;
 import org.ohgiraffers.board.service.PostService;
@@ -42,6 +44,8 @@ Rest특징으로는 기본적으로 웹의 기존 기술과 http프로토콜을 
  */
 //컨트롤러도 어노테이션 붙여줘야
 
+    @Tag(name="posts", description = "게시글api")
+            //이렇게 스웨거에서 명세 달아주는군 ㅋ
     @Controller
     @ResponseBody
     //없애줘야겠지 두개합친게 vs restcontroller니..ㅋ
@@ -60,6 +64,9 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping
+    @Operation(summary = "게시글 작성", description = "제목(title), 내용(content) 입력해주세요 ")
+        //이렇게 스웨거에서 명세 달아주는군 ㅋ
+
     public ResponseEntity<CreatePostResponse> postCreate(@RequestBody CreatePostRequest request) {
         CreatePostResponse response = postService.createPost(request);
         //사용자가 요청보낸걸 처리하고, 리스폰스받는것!
@@ -75,6 +82,7 @@ public class PostController {
     //이번엔조회@
 
     //이럴땐 url설정을  큰따옴표로 " "
+
     @GetMapping("/{postId}") //포스트아이디에 괄호해놓고하면 패스배리어블 어노테이션으로 받아올수있음 ㅋ body에 안넣고도
     public ResponseEntity<ReadPostResponse> postRead(@PathVariable Long postId) {
 
